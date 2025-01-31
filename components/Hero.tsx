@@ -10,7 +10,8 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mb-10 md:mb-0">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Hello, I'm <span className="text-emerald-400">Andrei Sava</span>
+              Hello, I&apos;m
+              <span className="text-emerald-400">&nbsp;Andrei Sava</span>
             </h1>
             <p className="text-xl text-zinc-400 mb-8">
               Full Stack Developer passionate about technology and innovation
@@ -23,7 +24,7 @@ const Hero = () => {
                 Contact me
               </a>
               <a
-                href="#proiecte"
+                href="#projects"
                 className="px-6 py-3 border border-zinc-700 text-zinc-300 rounded hover:border-emerald-400 hover:text-emerald-400 transition-colors"
               >
                 See my projects

@@ -15,18 +15,15 @@ export default function Home() {
         <main>
           <Hero />
           <Skills />
+          <Projects />
           <Experience />
           <Education />
-          <Projects />
           <Hackathons />
           <Courses />
         </main>
-        <footer className="bg-zinc-900 border-t border-zinc-800 py-8">
+        <footer className="bg-zinc-900 border-t border-zinc-800 py-4">
           <div className="container mx-auto px-6 text-center text-zinc-400">
-            <p>
-              © {new Date().getFullYear()} Sava Cristian Andrei. Toate
-              drepturile rezervate.
-            </p>
+            <p>© {new Date().getFullYear()} Sava Cristian Andrei.</p>
           </div>
         </footer>
       </div>

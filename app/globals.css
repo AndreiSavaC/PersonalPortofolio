@@ -23,3 +23,22 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #444;
 }
+
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-content {
+  scrollbar-width: none;
+}
+
+.modal-content {
+  -ms-overflow-style: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+button[data-tooltip]:hover span[data-tooltip-box] {
+  opacity: 1;
+}
