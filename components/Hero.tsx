@@ -18,10 +18,11 @@ const Hero = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#contact"
+                href="/CV_Sava_Andrei.pdf"
+                download="CV_Sava_Andrei.pdf"
                 className="px-6 py-3 bg-emerald-500 text-black font-medium rounded hover:bg-emerald-400 transition-colors"
               >
-                Contact me
+                Download CV
               </a>
               <a
                 href="#projects"

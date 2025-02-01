@@ -6,14 +6,14 @@ const Hackathons = () => {
   const hackathons = [
     {
       name: "BEST Hackathon",
-      position: "First place",
+      position: "1st place",
       project: "Adonis Health",
       description:
         "An AI-powered platform that enhances healthcare workflows and integrates medical devices seamlessly.",
     },
     {
       name: "EDU TECH 4th Edition",
-      position: "Second place",
+      position: "2nd place",
       project: "HeckEd",
       description:
         "A cybersecurity training platform with AI-assisted learning, gamification, and automated security challenges.",
