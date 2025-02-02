@@ -74,16 +74,10 @@ export default function Projects() {
         "GROQ",
         "Docker",
       ],
-      liveUrl: "",
+      liveUrl: "/images/insight/insight2.png",
       githubUrl: "https://github.com/AndreiSavaC/Medly",
-      image: "/images/medly/medly0.png",
-      screenshots: [
-        "/images/medly/medly1.png",
-        "/images/medly/medly2.png",
-        "/images/medly/medly3.png",
-        "/images/medly/medly4.png",
-        "/images/medly/medly5mobile.png",
-      ],
+      image: "/images/insight/insight2.png",
+      screenshots: [],
     },
     {
       title: "Blog Management System",
@@ -165,7 +159,7 @@ export default function Projects() {
               className="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 hover:border-emerald-400/50 duration-500 transition-colors h-full flex flex-col"
             >
               <div className="aspect-video relative">
-                <Image src={project.image} alt={project.title} layout="fill" />
+                <Image src={project.image} alt={project.title} fill />
               </div>
               <div className="p-6 text-white flex flex-col h-full">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
@@ -233,7 +227,6 @@ export default function Projects() {
                 <Image
                   src={selectedProject.screenshots[currentScreenshot]}
                   alt={`Screenshot ${currentScreenshot + 1}`}
-                  layout="intrinsic"
                   width={
                     selectedProject.screenshots[currentScreenshot].includes(
                       "mobile"
@@ -314,7 +307,6 @@ export default function Projects() {
                   <Image
                     src={fullscreenImage}
                     alt="Fullscreen"
-                    layout="intrinsic"
                     width={1200}
                     height={800}
                     className="max-w-full max-h-full object-contain"
