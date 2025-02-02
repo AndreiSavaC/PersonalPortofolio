@@ -13,13 +13,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Run Docker Compose on VPS
+      - name: Test SSH connection
         uses: appleboy/ssh-action@v0.1.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /home/PersonalPortofolio
-            git pull origin main  
-            docker compose up -d --build
+            whoami
+            hostname
