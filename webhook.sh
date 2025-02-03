@@ -41,4 +41,3 @@ while true; do
         fi
     done < /tmp/nc_output.tmp
 done
-
