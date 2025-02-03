@@ -44,3 +44,4 @@ next-env.d.ts
 
 nohup.out
 webhook.sh
+webhook.log
