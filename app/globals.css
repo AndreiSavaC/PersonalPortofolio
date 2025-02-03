@@ -43,5 +43,5 @@ button[data-tooltip]:hover span[data-tooltip-box] {
   opacity: 1;
 }
 .adaw {
-  opacity: 1;
+  opacity: 0;
 }
