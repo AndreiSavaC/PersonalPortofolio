@@ -10,13 +10,24 @@ source /home/PersonalPortofolio/.env
 function deploy {
     echo "$(date) - Received webhook, updating repository..." >> $LOG_FILE
     cd $REPO_DIR || exit
+
+    echo "$(date) - Running git pull..." >> $LOG_FILE
     git pull origin main >> $LOG_FILE 2>&1
+
+    echo "$(date) - Running docker compose up..." >> $LOG_FILE
     docker compose up -d --build >> $LOG_FILE 2>&1
+
     echo "$(date) - Deployment complete!" >> $LOG_FILE
-    docker system prune -a --volumes -f
+
+    echo "$(date) - Running docker system prune..." >> $LOG_FILE
+    docker system prune -a --volumes -f >> $LOG_FILE 2>&1
     echo "$(date) - Prune complete!" >> $LOG_FILE
-    /home/PersonalPortofolio/send_notification.sh  
+
+    echo "$(date) - Running send_notification.sh..." >> $LOG_FILE
+    /home/PersonalPortofolio/send_notification.sh >> $LOG_FILE 2>&1
+    echo "$(date) - Notification script executed!" >> $LOG_FILE
 }
+
 
 while true; do
     nc -l -p $WEBHOOK_PORT -q 1 | while read -r line; do
