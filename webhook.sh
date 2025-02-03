@@ -30,19 +30,15 @@ function deploy {
 
 
 while true; do
-    { 
-      read request_line
-      echo "$(date) - Received request: $request_line" >> "$LOG_FILE"
-
-      if echo "$request_line" | grep -q "POST"; then
-          deploy
-      fi
-
-      while IFS= read -r header && [ "$header" != $'\r' ] && [ -n "$header" ]; do
-          :
-      done
-
-      echo -e "HTTP/1.1 200 OK\r\nContent-Length: 0\r\n\r\n"
-    } | nc -l -p "$WEBHOOK_PORT" -q 1
+    nc -l -p $WEBHOOK_PORT -q 1 > /tmp/nc_output.tmp
+    while read -r line; do
+        if echo "$line" | grep -q "POST /webhook"; then
+            if echo "$line" | grep -q "X-Hub-Signature: $WEBHOOK_SECRET"; then
+                deploy &
+            else
+                echo "$(date) - Invalid webhook signature" >> $LOG_FILE
+            fi
+        fi
+    done < /tmp/nc_output.tmp
 done
 
