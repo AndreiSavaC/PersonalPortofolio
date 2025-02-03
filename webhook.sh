@@ -30,7 +30,7 @@ function deploy {
 
 
 while true; do
-    nc -l -p $WEBHOOK_PORT -q 1 | while read -r line; do
+    nc -l -p $WEBHOOK_PORT | while read -r line; do
         if echo "$line" | grep -q "POST /webhook"; then
             if echo "$line" | grep -q "X-Hub-Signature: $WEBHOOK_SECRET"; then
                 deploy &
