@@ -7,15 +7,17 @@ import React, { useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [tooltipText, setTooltipText] = useState(
+    "savacristianandrei@yahoo.com"
+  );
 
   const copyEmail = () => {
     navigator.clipboard.writeText("savacristianandrei@yahoo.com");
-    setTooltipVisible(true);
+    setTooltipText("Copied!");
 
     setTimeout(() => {
-      setTooltipVisible(false);
+      setTooltipText("savacristianandrei@yahoo.com");
     }, 2000);
   };
 
@@ -60,7 +62,6 @@ const Header = () => {
             >
               Education
             </a>
-
             <a
               href="#hackathons"
               className="text-zinc-400 hover:text-white transition-colors"
@@ -99,7 +100,11 @@ const Header = () => {
                 <FontAwesomeIcon icon={faLinkedinIn} className="h-7 w-auto" />
               </button>
             </div>
-            <div className="relative">
+            <div
+              className="relative"
+              onMouseEnter={() => setTooltipVisible(true)}
+              onMouseLeave={() => setTooltipVisible(false)}
+            >
               <button
                 className="text-zinc-400 hover:text-white transition-colors"
                 onClick={copyEmail}
@@ -108,8 +113,8 @@ const Header = () => {
               </button>
 
               {tooltipVisible && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-black text-white text-sm px-2 py-1 rounded-md shadow-lg">
-                  Copied!
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-zinc-900 text-white text-sm px-4 py-2 rounded-md shadow-lg">
+                  {tooltipText}
                 </div>
               )}
             </div>

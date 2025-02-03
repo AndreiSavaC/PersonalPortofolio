@@ -76,13 +76,17 @@ export default function Projects() {
       ],
       liveUrl: "",
       githubUrl: "https://github.com/AndreiSavaC/Medly",
-      image: "/images/medly/medly0.png",
+      image: "/images/medly/medly0.jpeg",
       screenshots: [
-        "/images/medly/medly1.png",
-        "/images/medly/medly2.png",
-        "/images/medly/medly3.png",
-        "/images/medly/medly4.png",
-        "/images/medly/medly5mobile.png",
+        "/images/medly/medly1mobile.jpeg",
+        "/images/medly/medly2mobile.jpeg",
+        "/images/medly/medly3mobile.jpeg",
+        "/images/medly/medly4mobile.jpeg",
+        "/images/medly/medly5mobile.jpeg",
+        "/images/medly/medly6mobile.jpeg",
+        "/images/medly/medly7mobile.jpeg",
+        "/images/medly/medly8mobile.jpeg",
+        "/images/medly/medly9mobile.jpeg",
       ],
     },
     {
@@ -105,6 +109,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentScreenshot, setCurrentScreenshot] = useState<number>(0);
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+  const [fullscreenIndex, setFullscreenIndex] = useState<number | null>(null);
 
   function openModal(project: Project): void {
     setSelectedProject(project);
@@ -132,12 +137,35 @@ export default function Projects() {
     );
   }
 
-  function openFullscreen(image: string) {
+  function openFullscreen(image: string, index: number) {
     setFullscreenImage(image);
+    setFullscreenIndex(index);
   }
 
   function closeFullscreen() {
     setFullscreenImage(null);
+  }
+
+  function prevFullscreenScreenshot() {
+    if (selectedProject && fullscreenIndex !== null) {
+      const newIndex =
+        fullscreenIndex === 0
+          ? selectedProject.screenshots.length - 1
+          : fullscreenIndex - 1;
+      setFullscreenIndex(newIndex);
+      setFullscreenImage(selectedProject.screenshots[newIndex]);
+    }
+  }
+
+  function nextFullscreenScreenshot() {
+    if (selectedProject && fullscreenIndex !== null) {
+      const newIndex =
+        fullscreenIndex === selectedProject.screenshots.length - 1
+          ? 0
+          : fullscreenIndex + 1;
+      setFullscreenIndex(newIndex);
+      setFullscreenImage(selectedProject.screenshots[newIndex]);
+    }
   }
 
   useEffect(() => {
@@ -165,7 +193,7 @@ export default function Projects() {
               className="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 hover:border-emerald-400/50 duration-500 transition-colors h-full flex flex-col"
             >
               <div className="aspect-video relative">
-                <Image src={project.image} alt={project.title} layout="fill" />
+                <Image src={project.image} alt={project.title} fill />
               </div>
               <div className="p-6 text-white flex flex-col h-full">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
@@ -233,7 +261,6 @@ export default function Projects() {
                 <Image
                   src={selectedProject.screenshots[currentScreenshot]}
                   alt={`Screenshot ${currentScreenshot + 1}`}
-                  layout="intrinsic"
                   width={
                     selectedProject.screenshots[currentScreenshot].includes(
                       "mobile"
@@ -260,33 +287,48 @@ export default function Projects() {
                   className="absolute bottom-3 right-3 bg-black bg-opacity-50 hover:bg-opacity-75 p-1 rounded-md  transition-all z-10"
                   onClick={() =>
                     openFullscreen(
-                      selectedProject.screenshots[currentScreenshot]
+                      selectedProject.screenshots[currentScreenshot],
+                      currentScreenshot
                     )
                   }
                 >
                   <FontAwesomeIcon icon={faExpand} size="xl" />
                 </button>
               </div>
-              <button
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 p-1 rounded-full transition-all z-10"
-                onClick={prevScreenshot}
-              >
-                <FontAwesomeIcon
-                  icon={faChevronLeft}
-                  className="w-6 h-6"
-                  size="xl"
-                />
-              </button>
-              <button
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 p-1 rounded-full  transition-all z-10"
-                onClick={nextScreenshot}
-              >
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="w-6 h-6"
-                  size="xl"
-                />
-              </button>
+              {selectedProject.screenshots.length > 1 && (
+                <>
+                  <button
+                    className={`absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 p-1 rounded-full transition-all z-10 ${
+                      selectedProject.screenshots.length === 1
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
+                    onClick={prevScreenshot}
+                    disabled={selectedProject.screenshots.length === 1}
+                  >
+                    <FontAwesomeIcon
+                      icon={faChevronLeft}
+                      className="w-8 h-8"
+                      size="xl"
+                    />
+                  </button>
+                  <button
+                    className={`absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 p-1 rounded-full transition-all z-10 ${
+                      selectedProject.screenshots.length === 1
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
+                    onClick={nextScreenshot}
+                    disabled={selectedProject.screenshots.length === 1}
+                  >
+                    <FontAwesomeIcon
+                      icon={faChevronRight}
+                      className="w-8 h-8"
+                      size="xl"
+                    />
+                  </button>
+                </>
+              )}
             </div>
             <div className="text-zinc-400 mb-4 indent-4">
               {selectedProject.fullDescription.map((paragraph, index) => (
@@ -309,12 +351,42 @@ export default function Projects() {
                     className="absolute top-4 right-4 text-white text-3xl"
                     onClick={closeFullscreen}
                   >
-                    ✖
+                    <FontAwesomeIcon
+                      icon={faXmark}
+                      size="xl"
+                      className="transition-colors duration-300 hover:text-gray-400"
+                    />
                   </button>
+
+                  {selectedProject?.screenshots.length > 1 && (
+                    <>
+                      <button
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 p-3 rounded-full transition-all z-10"
+                        onClick={prevFullscreenScreenshot}
+                      >
+                        <FontAwesomeIcon
+                          icon={faChevronLeft}
+                          className="w-10 h-10 bg-gray-700 rounded-full p-2 transition-colors duration-300 hover:text-gray-400 hover:bg-gray-800"
+                          size="xl"
+                        />
+                      </button>
+
+                      <button
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 p-3 rounded-full transition-all z-10"
+                        onClick={nextFullscreenScreenshot}
+                      >
+                        <FontAwesomeIcon
+                          icon={faChevronRight}
+                          className="w-10 h-10 bg-gray-700 rounded-full p-2 transition-colors duration-300 hover:text-gray-400 hover:bg-gray-800"
+                          size="xl"
+                        />
+                      </button>
+                    </>
+                  )}
+
                   <Image
                     src={fullscreenImage}
                     alt="Fullscreen"
-                    layout="intrinsic"
                     width={1200}
                     height={800}
                     className="max-w-full max-h-full object-contain"

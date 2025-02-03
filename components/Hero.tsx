@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 const Hero = () => {
   return (
     <section
@@ -18,10 +18,11 @@ const Hero = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#contact"
+                href="/CV_Sava_Andrei.pdf"
+                download="CV_Sava_Andrei.pdf"
                 className="px-6 py-3 bg-emerald-500 text-black font-medium rounded hover:bg-emerald-400 transition-colors"
               >
-                Contact me
+                Download CV
               </a>
               <a
                 href="#projects"
@@ -32,9 +33,11 @@ const Hero = () => {
             </div>
           </div>
           <div className="md:w-1/2">
-            <img
-              src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=500&h=500"
+            <Image
+              src="/images/heroPhoto.png"
               alt="Profile"
+              width={256}
+              height={256}
               className="rounded-full w-64 h-64 object-cover mx-auto ring-2 ring-emerald-400/20"
             />
           </div>
