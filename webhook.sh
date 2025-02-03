@@ -30,7 +30,8 @@ function deploy {
 
 
 while true; do
-    nc -l -p $WEBHOOK_PORT -q 100 | while read -r line; do
+    nc -l -p $WEBHOOK_PORT -q 1 > /tmp/nc_output.tmp
+    while read -r line; do
         if echo "$line" | grep -q "POST /webhook"; then
             if echo "$line" | grep -q "X-Hub-Signature: $WEBHOOK_SECRET"; then
                 deploy &
@@ -38,5 +39,6 @@ while true; do
                 echo "$(date) - Invalid webhook signature" >> $LOG_FILE
             fi
         fi
-    done
+    done < /tmp/nc_output.tmp
 done
+
