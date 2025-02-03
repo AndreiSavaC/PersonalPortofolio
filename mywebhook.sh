@@ -47,12 +47,15 @@ process_request() {
   echo "[$(date)] -- Signature valid --"
 
   cd /home/PersonalPortofolio || exit
+
+  /home/PersonalPortofolio/send_start_notification.sh
+
   docker compose down
   docker compose up -d --build
 
   docker system prune -a --volumes -f
 
-  /home/PersonalPortofolio/send_notification.sh
+  /home/PersonalPortofolio/send_finish_notification.sh
 
   send_http_response "200 OK" "Deployment successful!"
   echo "[$(date)] -- Deployment successful! --"
