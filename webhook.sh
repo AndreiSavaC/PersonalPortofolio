@@ -17,7 +17,7 @@ function deploy {
     echo "$(date) - Running docker compose up..." >> $LOG_FILE
     docker compose up -d --build >> $LOG_FILE 2>&1
 
-    echo "$(date) - Deployment complete!" >> $LOG_FILE
+    echo "$(date) - Deployment completee!" >> $LOG_FILE
 
     echo "$(date) - Running docker system prune..." >> $LOG_FILE
     docker system prune -a --volumes -f >> $LOG_FILE 2>&1
