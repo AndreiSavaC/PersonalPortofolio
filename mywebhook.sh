@@ -50,6 +50,8 @@ process_request() {
 
   /home/PersonalPortofolio/send_start_notification.sh
 
+  git pull origin main
+
   docker compose down
   docker compose up -d --build
 
