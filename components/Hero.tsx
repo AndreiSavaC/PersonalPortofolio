@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import ShowPhoneButton from "./ShowPhoneButton";
+
 const Hero = () => {
   return (
     <section
@@ -16,7 +18,7 @@ const Hero = () => {
             <p className="text-xl text-zinc-400 mb-8">
               Full Stack Developer passionate about technology and innovation
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 items-center">
               <a
                 href="/CV_Sava_Andrei.pdf"
                 download="CV_Sava_Andrei.pdf"
@@ -24,12 +26,7 @@ const Hero = () => {
               >
                 Download CV
               </a>
-              <a
-                href="#projects"
-                className="px-6 py-3 border border-zinc-700 text-zinc-300 rounded hover:border-emerald-400 hover:text-emerald-400 transition-colors"
-              >
-                See my projects
-              </a>
+              <ShowPhoneButton />
             </div>
           </div>
           <div className="md:w-1/2">

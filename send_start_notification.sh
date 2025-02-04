@@ -5,7 +5,7 @@ source /home/PersonalPortofolio/.env
 CURRENT_TIME=$(date "+%Y-%m-%d %H:%M:%S")
 
 MESSAGE="
-🚀 Deployment started on VPS! ✅------
+🚀 Deployment started on VPS! ✅
 📅 Date: $CURRENT_TIME"
 
 curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
