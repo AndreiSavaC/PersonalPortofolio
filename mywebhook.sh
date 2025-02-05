@@ -55,7 +55,7 @@ process_request() {
   docker compose down
   docker compose up -d --build
 
-  docker system prune -a --volumes -f
+  # docker system prune -a --volumes -f
 
   /home/PersonalPortofolio/send_finish_notification.sh
 
