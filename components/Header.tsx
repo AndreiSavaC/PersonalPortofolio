@@ -119,13 +119,13 @@ const Header = () => {
               )}
             </div>
             <button
-              className="md:hidden text-zinc-400 hover:text-white"
+              className="md:hidden text-zinc-400 hover:text-white transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
-                <FontAwesomeIcon icon={faXmark} size="2xl" />
+                <FontAwesomeIcon icon={faXmark} className="h-7 w-auto" />
               ) : (
-                <FontAwesomeIcon icon={faBars} size="xl" className="ml-4" />
+                <FontAwesomeIcon icon={faBars} className="ml-4 h-7 w-auto" />
               )}
             </button>
           </div>

@@ -10,13 +10,13 @@ const ShowPhoneButton = () => {
       {!showNumber ? (
         <button
           onClick={() => setShowNumber(true)}
-          className="px-6 py-3 border border-zinc-700 text-zinc-300 rounded hover:border-emerald-400 hover:text-emerald-400 transition-colors duration-500"
+          className="sm:text-lg px-4 py-3 border border-zinc-700 w-[153px] sm:w-[170px] text-zinc-300 rounded hover:border-emerald-400 hover:text-emerald-400 transition-colors duration-500"
         >
-          Show Phone Number
+          Phone Number
         </button>
       ) : (
-        <div className="text-xl border border-zinc-700/50 text-emerald-400 px-6 h-[50px] flex items-center justify-center animate-appear">
-          +40 123 456 789
+        <div className="sm:text-lg border border-zinc-700/50 text-emerald-400 px-4 h-[50px] flex items-center justify-center animate-appear">
+          +40 753 537 681
         </div>
       )}
       <style jsx>{`

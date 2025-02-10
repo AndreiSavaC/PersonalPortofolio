@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section
       id="about"
-      className="pt-32 pb-20 bg-gradient-to-b from-black to-zinc-900"
+      className="pt-32 pb-10 bg-gradient-to-b from-black to-zinc-900"
     >
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between">
@@ -18,11 +18,11 @@ const Hero = () => {
             <p className="text-xl text-zinc-400 mb-8">
               Full Stack Developer passionate about technology and innovation
             </p>
-            <div className="flex space-x-4 items-center">
+            <div className="flex space-x-4 items-center justify-center sm:justify-start">
               <a
                 href="/CV_Sava_Andrei.pdf"
                 download="CV_Sava_Andrei.pdf"
-                className="px-6 py-3 bg-emerald-500 text-black font-medium rounded hover:bg-emerald-400 transition-colors"
+                className="sm:text-lg px-4 py-3 bg-emerald-500 text-black font-medium rounded hover:bg-emerald-400 transition-colors text-center"
               >
                 Download CV
               </a>
