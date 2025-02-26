@@ -6,7 +6,7 @@ const Education = () => {
   const education = [
     {
       institution: "Transilvania University of Brașov",
-      degree: "MSc degree in Electronic and Communication Integrated Systems",
+      degree: "MSc degree in Computer Science",
       period: "10/2023 - Present",
       description: [
         "Advanced elements in developing web applications",
